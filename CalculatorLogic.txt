@@ -1,1 +1,10 @@
-//logic txt
+//  logic.txt
+//  CalculatorLogic.swift
+//
+// Created by Alexander on 27.03.2022
+//
+
+import Foundation
+
+class CalculatorLogic {
+}
