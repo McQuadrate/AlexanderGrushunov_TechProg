@@ -23,4 +23,69 @@ class CalculatorLogic {
       }
       return -1
     }
+func Pr_Vec(vec: [Character]) {
+      for i in 0..<vec.count {
+        print(vec[i])
+      }
+    }
+
+    func check_text(text: [Character]) -> Bool {
+      let n: Int = text.count
+      if n > 0 {
+        var CountOpen: Int = 0
+        var CountClose: Int = 0
+        let operations: [Character] = ["+", "-", "*", "/"]
+        let AfterOpen: [Character] = ["+", "*", "/"]
+        var CheckStack: [Character] = []
+
+        if (text[0] != "-" && C_in_S(c: text[0], text: operations))
+          || C_in_S(c: text[n - 1], text: operations) || (text[0] == ")") || (text[n - 1] == "(") {
+          return false
+        }
+
+        for i in 0..<n {
+          if text[i] == "(" {
+            CountOpen += 1
+            CheckStack.append(text[i])
+          }
+          if text[i] == ")" {
+            CountClose += 1
+            CheckStack.append(text[i])
+          }
+          if C_in_S(c: text[i], text: operations) && C_in_S(c: text[i + 1], text: operations) {
+            return false
+          }
+          if (text[i] == "(") && (C_in_S(c: text[i + 1], text: AfterOpen) || (text[i + 1] == ")")) {
+            return false
+          }
+        }
+
+        var pos: Int = 0
+        pos = Find_Char_In_Vec(c: ")", vec: CheckStack)
+
+        if CountClose == CountOpen {
+          while pos != -1 {
+            CheckStack[pos] = "0"
+            CountClose -= 1
+            for i in stride(from: pos - 1, to: -1, by: -1) {
+              if CheckStack[i] == "(" {
+                CheckStack[i] = "0"
+                CountOpen -= 1
+                break
+              }
+            }
+            pos = Find_Char_In_Vec(c: ")", vec: CheckStack)
+          }
+        }
+
+        if (CountClose == 0) && (CountOpen == 0) {
+          return true
+        }
+        return false
+
+      } else {
+        return false
+      }
+    }
+
 }
