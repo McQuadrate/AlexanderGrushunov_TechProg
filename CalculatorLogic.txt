@@ -15,4 +15,12 @@ class CalculatorLogic {
       }
       return false
     }    
+    func Find_Char_In_Vec(c: Character, vec: [Character]) -> Int {
+      for i in stride(from: vec.count - 1, to: -1, by: -1) {
+        if c == vec[i] {
+          return i
+        }
+      }
+      return -1
+    }
 }
