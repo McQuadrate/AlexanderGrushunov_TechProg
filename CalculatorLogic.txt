@@ -7,6 +7,8 @@
 import Foundation
 
 class CalculatorLogic {
+    var flag: Int = -1
+
     func C_in_S(c: Character, text: [Character]) -> Bool {
       for i in 0..<text.count {
         if c == text[i] {
@@ -14,7 +16,8 @@ class CalculatorLogic {
         }
       }
       return false
-    }    
+    }
+    
     func Find_Char_In_Vec(c: Character, vec: [Character]) -> Int {
       for i in stride(from: vec.count - 1, to: -1, by: -1) {
         if c == vec[i] {
@@ -23,11 +26,12 @@ class CalculatorLogic {
       }
       return -1
     }
-func Pr_Vec(vec: [Character]) {
+
+   func Pr_Vec(vec: [Character]) {
       for i in 0..<vec.count {
         print(vec[i])
       }
-    }
+   }
 
     func check_text(text: [Character]) -> Bool {
       let n: Int = text.count
@@ -87,5 +91,94 @@ func Pr_Vec(vec: [Character]) {
         return false
       }
     }
+
+    func Element_From_String(text: inout [Character]) -> [Character] {
+      let service: [Character] = ["+", "-", "*", "/", "(", ")"]
+      var element: [Character] = []
+      let n: Int = text.count
+      var i: Int = 0
+      var flag_1: Int = 1
+
+      if (text[i] == "-") && (flag == -1) {
+        element.append(text[i])
+        i += 1
+        flag = 0
+      } else {
+        flag = -2
+      }
+
+      if (text[0] == "(") && (text[1] == "-") {
+        flag = -1
+        i = 0
+      }
+
+      if (text[0] == "(") && (text[1] == "-") && (text[2] >= "0") && (text[2] <= "9") {
+        for j in 2..<n {
+          if text[j] == ")" {
+            break
+          }
+          if C_in_S(c: text[j], text: service) {
+            flag_1 = 1
+            break
+          } else {
+            flag_1 = 0
+          }
+        }
+      }
+
+      if flag_1 == 0 {
+        for j in 1..<n {
+          if text[j] == ")" {
+            break
+          }
+          element.append(text[j])
+        }
+        for _ in 0..<(element.count + 2)  //text.erase
+        {
+          text.removeFirst()
+        }
+        flag = 0
+        return element
+      }
+
+      if !C_in_S(c: text[i], text: service) {
+        for j in i..<n {
+          if C_in_S(c: text[j], text: service) {
+            break
+          }
+          element.append(text[j])
+        }
+      } else {
+        element = []
+        element.append(text[0])
+      }
+
+      for _ in 0..<element.count  //text.erase
+      {
+        text.removeFirst()
+      }
+      return element
+    }
+
+    func Calc(a: Double, c: Character, b: Double) -> Double {
+      if c == "*" {
+        return a * b
+      }
+        
+      if c == "/" && b != 0 {
+        return a / b
+      }
+        
+      if c == "+" {
+        return a + b
+      }
+        
+      if c == "-" {
+        return a - b
+      }
+        
+      return 0
+    }
+
 
 }
