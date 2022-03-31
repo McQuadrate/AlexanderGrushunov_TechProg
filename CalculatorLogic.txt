@@ -8,6 +8,7 @@ import Foundation
 
 class CalculatorLogic {
     var flag: Int = -1
+    var divisionErrorFlag: Bool = false
 
     func C_in_S(c: Character, text: [Character]) -> Bool {
       for i in 0..<text.count {
@@ -167,6 +168,8 @@ class CalculatorLogic {
         
       if c == "/" && b != 0 {
         return a / b
+      } else if c == "/" && b == 0{
+        divisionErrorFlag = true
       }
         
       if c == "+" {
@@ -251,6 +254,11 @@ class CalculatorLogic {
         let x = Numbers[0]
         let roundedValue1 = round(x * 1_000_000) / 1_000_000
         ans = String(roundedValue1)
+      }
+
+      if divisionErrorFlag {
+          divisionErrorFlag = false
+          return "Division by zero!"
       }
 
       return ans.isEmpty ? "Invalid data" : ans
