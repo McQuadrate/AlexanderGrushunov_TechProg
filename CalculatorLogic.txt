@@ -180,5 +180,81 @@ class CalculatorLogic {
       return 0
     }
 
+    func Calculate(text: [Character]) -> String {
+        if !check_text(text: text) {
+            return "Invalid data"
+        }
+        
+      var Numbers: [Double] = []
+      var Service: [Character] = []
+      var text_copy: [Character] = text
+
+      var Num: Double = 0
+      var A: Double = 0
+      var B: Double = 0
+      var C: Character = "0"
+
+      let CalcOp: [Character] = ["+", "-", "*", "/"]
+      var element: [Character] = []
+
+      let prior: [Character: Int] = ["*": 2, "/": 2, "+": 1, "-": 1]
+      while text_copy.count != 0 {
+        element = Element_From_String(text: &text_copy)
+
+        if (element[0] >= "0" && element[0] <= "9") || (element[0] == "-" && flag == 0) {
+          Num = Double(String(element)) ?? 0
+          Numbers.append(Num)
+        } else {
+          if C_in_S(c: element[0], text: CalcOp) {
+            if Service.count == 0 {
+              Service.append(element[0])
+            } else {
+              if (prior[Service[Service.count - 1]] ?? 0) < (prior[element[0]] ?? 0) {
+                Service.append(element[0])
+              } else {
+                C = Service.removeLast()
+                B = Numbers.removeLast()
+                A = Numbers.removeLast()
+                Numbers.append(Calc(a: A, c: C, b: B))
+                text_copy.insert(element[0], at: 0)
+              }
+            }
+          } else {
+            if element[0] == "(" {
+              Service.append(element[0])
+            } else {
+              if element[0] == ")" {
+                for i in stride(from: Service.count - 1, to: -1, by: -1) {
+                  if Service[i] == "(" {
+                    break
+                  }
+                  C = Service.removeLast()
+                  B = Numbers.removeLast()
+                  A = Numbers.removeLast()
+                  Numbers.append(Calc(a: A, c: C, b: B))
+                }
+                Service.removeLast()
+              }
+            }
+          }
+        }
+      }
+        for _ in stride(from: Service.count - 1, to: -1, by: -1) {
+            C = Service.removeLast()
+            B = Numbers.removeLast()
+            A = Numbers.removeLast()
+            Numbers.append(Calc(a: A, c: C, b: B))
+          }
+
+      var ans: String = ""
+      if (Numbers.count == 1) && (Service.count == 0) {
+        let x = Numbers[0]
+        let roundedValue1 = round(x * 1_000_000) / 1_000_000
+        ans = String(roundedValue1)
+      }
+
+      return ans.isEmpty ? "Invalid data" : ans
+    }
+
 
 }
