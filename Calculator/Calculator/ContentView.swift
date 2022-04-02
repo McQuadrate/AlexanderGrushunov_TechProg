@@ -70,6 +70,32 @@ struct ClearButtonBackground: ButtonStyle {
     }
 }
 
+struct ResultView: View {
+    @Binding var calcStr: String
+    @Binding var lastRes: String
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Введенное выражение: \(lastRes)")
+                .font(.title)
+                .fontWeight(.medium)
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: 352, minHeight: 50, alignment: .center)
+                .border(Color("Border"), width: 3)
+                .background(Color("Other").opacity(0.8))
+            Text(calcStr)
+                .font(.system(size: 30))
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: 352, minHeight: 50)
+                .border(Color("Border"), width: 3)
+                .background(Color("Digits").opacity(0.8))
+                .foregroundColor(Color("Border"))
+        }
+    }
+}
+
+
 struct ContentView: View {
     @State private var calcStr: String = ""
     @State private var lastRes: String = ""
