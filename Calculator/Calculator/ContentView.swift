@@ -296,10 +296,13 @@ struct CalcView: View {
 struct ContentView: View {
     @State private var calcStr: String = ""
     @State private var lastRes: String = ""
-
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            CalcView(calcStr: $calcStr, lastRes: $lastRes)
+        }
+        .background(Color("CalcBGColor"))
+        .statusBar(hidden: true)
     }
 }
 
