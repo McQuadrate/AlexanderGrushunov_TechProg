@@ -271,41 +271,6 @@ struct CalcButtonsView: View {
     }
 }
 
-struct CalcView: View {
-    @Binding var calcStr: String
-    @Binding var lastRes: String
-
-    var body: some View {
-        ZStack {
-            Image("TokCalc")
-                .resizable()
-                .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                Spacer()
-                ResultView(calcStr: $calcStr, lastRes: $lastRes)
-                Spacer()
-                CalcButtonsView(calcStr: $calcStr, lastRes: $lastRes)
-            }
-        }
-        .preferredColorScheme(.light)
-    }
-}
-
-struct ContentView: View {
-    @State private var calcStr: String = ""
-    @State private var lastRes: String = ""
-    
-    var body: some View {
-        VStack {
-            CalcView(calcStr: $calcStr, lastRes: $lastRes)
-        }
-        .background(Color("CalcBGColor"))
-        .statusBar(hidden: true)
-    }
-}
-
 func buttonsLogic(buttonCode: String, calcStr: inout String, lastRes: inout String, audioPlayer: inout AVAudioPlayer) {
     let calc = CalculatorLogic()
     
@@ -342,6 +307,41 @@ func buttonsLogic(buttonCode: String, calcStr: inout String, lastRes: inout Stri
         }
     default:
         calcStr += buttonCode
+    }
+}
+
+struct CalcView: View {
+    @Binding var calcStr: String
+    @Binding var lastRes: String
+
+    var body: some View {
+        ZStack {
+            Image("TokCalc")
+                .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack {
+                Spacer()
+                ResultView(calcStr: $calcStr, lastRes: $lastRes)
+                Spacer()
+                CalcButtonsView(calcStr: $calcStr, lastRes: $lastRes)
+            }
+        }
+        .preferredColorScheme(.light)
+    }
+}
+
+struct ContentView: View {
+    @State private var calcStr: String = ""
+    @State private var lastRes: String = ""
+    
+    var body: some View {
+        VStack {
+            CalcView(calcStr: $calcStr, lastRes: $lastRes)
+        }
+        .background(Color("CalcBGColor"))
+        .statusBar(hidden: true)
     }
 }
 
