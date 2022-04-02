@@ -271,6 +271,28 @@ struct CalcButtonsView: View {
     }
 }
 
+struct CalcView: View {
+    @Binding var calcStr: String
+    @Binding var lastRes: String
+
+    var body: some View {
+        ZStack {
+            Image("TokCalc")
+                .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack {
+                Spacer()
+                ResultView(calcStr: $calcStr, lastRes: $lastRes)
+                Spacer()
+                CalcButtonsView(calcStr: $calcStr, lastRes: $lastRes)
+            }
+        }
+        .preferredColorScheme(.light)
+    }
+}
+
 struct ContentView: View {
     @State private var calcStr: String = ""
     @State private var lastRes: String = ""
