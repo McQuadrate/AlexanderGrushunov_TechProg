@@ -1,7 +1,8 @@
-//  logic.txt
-//  CalculatorLogic.swift
 //
-// Created by Alexander on 27.03.2022
+//  CalculatorLogic.swift
+//  Calculator
+//
+//  Created by Владислав on 02.04.2022.
 //
 
 import Foundation
@@ -18,7 +19,7 @@ class CalculatorLogic {
       }
       return false
     }
-    
+
     func Find_Char_In_Vec(c: Character, vec: [Character]) -> Int {
       for i in stride(from: vec.count - 1, to: -1, by: -1) {
         if c == vec[i] {
@@ -28,11 +29,11 @@ class CalculatorLogic {
       return -1
     }
 
-   func Pr_Vec(vec: [Character]) {
+    func Pr_Vec(vec: [Character]) {
       for i in 0..<vec.count {
         print(vec[i])
       }
-   }
+    }
 
     func check_text(text: [Character]) -> Bool {
       let n: Int = text.count
@@ -167,7 +168,7 @@ class CalculatorLogic {
       }
         
       if c == "/" && b != 0 {
-        return a / b
+          return a / b
       } else if c == "/" && b == 0{
         divisionErrorFlag = true
       }
@@ -249,20 +250,16 @@ class CalculatorLogic {
             Numbers.append(Calc(a: A, c: C, b: B))
           }
 
-      var ans: String = ""
+    var ans: String = ""
       if (Numbers.count == 1) && (Service.count == 0) {
         let x = Numbers[0]
         let roundedValue1 = round(x * 1_000_000) / 1_000_000
         ans = String(roundedValue1)
       }
-
-      if divisionErrorFlag {
-          divisionErrorFlag = false
-          return "Division by zero!"
-      }
-
-      return ans.isEmpty ? "Invalid data" : ans
+    if divisionErrorFlag {
+        divisionErrorFlag = false
+        return "Division by zero!"
     }
-
-
+    return ans.isEmpty ? "Invalid data" : ans
+    }
 }

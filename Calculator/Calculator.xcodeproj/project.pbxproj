@@ -11,6 +11,7 @@
 		1D6209B527F826E100AFFA01 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6209B427F826E100AFFA01 /* ContentView.swift */; };
 		1D6209B727F826E100AFFA01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D6209B627F826E100AFFA01 /* Assets.xcassets */; };
 		1D6209BA27F826E100AFFA01 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D6209B927F826E100AFFA01 /* Preview Assets.xcassets */; };
+		1D6209C127F8279200AFFA01 /* CalculatorLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6209C027F8279200AFFA01 /* CalculatorLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		1D6209B427F826E100AFFA01 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1D6209B627F826E100AFFA01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D6209B927F826E100AFFA01 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1D6209C027F8279200AFFA01 /* CalculatorLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				1D6209B227F826E100AFFA01 /* CalculatorApp.swift */,
 				1D6209B427F826E100AFFA01 /* ContentView.swift */,
+				1D6209C027F8279200AFFA01 /* CalculatorLogic.swift */,
 				1D6209B627F826E100AFFA01 /* Assets.xcassets */,
 				1D6209B827F826E100AFFA01 /* Preview Content */,
 			);
@@ -139,6 +142,7 @@
 			files = (
 				1D6209B527F826E100AFFA01 /* ContentView.swift in Sources */,
 				1D6209B327F826E100AFFA01 /* CalculatorApp.swift in Sources */,
+				1D6209C127F8279200AFFA01 /* CalculatorLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
